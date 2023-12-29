@@ -1,0 +1,56 @@
+/* FILEPATH: /D:/交大/112-1/database/db_final_project/static/css/style.css */
+
+/* Add your CSS styles here to decorate index.html */
+/* 在 static/css/style.css 中 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+li:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+li:nth-child(odd) {
+    background-color: #efefef;
+}
+
+li:nth-child(odd):hover {
+    background-color: #e9e9e9;
+}
+
+ul {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+@media (max-width: 600px) {
+    li {
+        margin: 10px 5px;
+    }
+}

@@ -9,3 +9,6 @@ To get started, type the following in your terminal:
 * **app.py (backend)**: for connecting db (and probably deploy information)
 * **templates (holder for html files)**:
   * **index.html (frontend)**: for the home webpage 
+* **static**
+  * **css (holder for css files)**
+    * **style.css**: for index.html (?)
