@@ -1,6 +1,8 @@
 # db_final_project
 The code of final project of 2023 Fall Introduction to Database System (Prof: Yi Ju Tseng)
 
+Group members: 廖涵玉、林筠蓁、[@fangci](https://github.com/fangci)、[@moonymercury](https://github.com/moonymercury)、[@emily0330](https://github.com/emily0330)
+
 ### Info
 * Framework: Flask
 To get started, type the following in your terminal:
