@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Novel List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <h1>Novels</h1>
@@ -13,5 +14,7 @@
             <li>No novels found.</li>
         {% endfor %}
     </ul>
+     <!-- 引用 static/images 目录下的图片 -->
+    <img src="{{ url_for('static', filename='images/yjt_monk.jpg') }}" alt="monkey Image">
 </body>
 </html>

@@ -1,10 +1,7 @@
-/* FILEPATH: /D:/交大/112-1/database/db_final_project/static/css/style.css */
-
-/* Add your CSS styles here to decorate index.html */
 /* 在 static/css/style.css 中 */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #91a8d0;
     margin: 0;
     padding: 0;
     color: #333;
@@ -48,6 +45,15 @@ ul {
     max-width: 600px;
     margin: 20px auto;
 }
+
+img {
+    max-width: 100%; /* 让图片宽度不超过其容器宽度 */
+    height: auto; /* 保持图片的原始宽高比 */
+    display: block; /* 避免图片下方出现空隙 */
+    margin: 0 auto; /* 如果需要，使图片在容器中居中 */
+    width: 25%; /* 圖片大小，可換成任何希望的百分比 */
+}
+
 
 @media (max-width: 600px) {
     li {
