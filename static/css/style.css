@@ -1,6 +1,144 @@
 /* 在 static/css/style.css 中 */
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #f7cac9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #91a8d0;
+    font-size: 56px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 32px auto;
+}
+
+li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+li:hover {
+    background-color: #f9f9f9;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+li:nth-child(odd) {
+    background-color: #efefef;
+}
+
+li:nth-child(odd):hover {
+    background-color: #e9e9e9;
+}
+
+img {
+    max-width: 100%; /* 让图片宽度不超过其容器宽度 */
+    height: auto; /* 保持图片的原始宽高比 */
+    display: block; /* 避免图片下方出现空隙 */
+    margin: 0 auto; /* 如果需要，使图片在容器中居中 */
+    width: 25%; /* 圖片大小，可換成任何希望的百分比 */
+}
+
+/* 更改文本颜色 */
+p.alert {
+    color: #fff;
+    background-color: #91a8d0;
+    border: 2px solid #91a8d0;
+    margin-top: 36px;
+}
+
+/* 更改文本字体大小 */
+p.alert {
+    font-size: 28px;
+}
+
+/* 自定义滑动条样式 */
+input[type="range"].form-range {
+    -webkit-appearance: none; /* Override default appearance */
+    width: 100%; /* Full-width */
+    margin: 20px 0; /* Margin for label */
+}
+
+input[type="range"].form-range {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* 其他样式 */
+}
+
+/* Customize the slider thumb (the draggable circle) */
+input[type="range"].form-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #91a8d0; /* Slider handle color */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%; /* Circular shape */
+}
+
+input[type="range"].form-range::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #91a8d0;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.form-check {
+    margin-left: 20px; /* 调整这个值以适应您的设计 */
+}
+
+/* 未选中的勾选框样式 */
+input[type="checkbox"] {
+    /* 添加自定义样式，例如颜色或边框 */
+    border: 2px solid #e67ea3;
+    background-color: #fff;
+    /* 可以添加其他样式，如大小和形状 */
+}
+
+/* 选中的勾选框样式 */
+input[type="checkbox"]:checked {
+    /* 添加自定义样式，例如背景颜色或图标 */
+    background-color: #e67ea3;
+    border: 2px solid #e04c80;
+}
+
+/* 鼠标悬停在勾选框上的样式 */
+input[type="checkbox"]:hover {
+    /* 添加悬停样式，例如改变颜色或添加阴影 */
+    box-shadow: 0 0 5px #e04c80;
+}
+
+/* 勾选框的标签样式 */
+label.form-check-label {
+    /* 添加标签的样式，例如字体颜色和大小 */
+    font-size: 20px;
+    color: #e67ea3;
+}
+
+@media (max-width: 600px) {
+    li {
+        margin: 10px 5px;
+    }
+}
+
+/*
+body {
+    font-family: 'Arial', sans-serif;
     background-color: #91a8d0;
     margin: 0;
     padding: 0;
@@ -47,11 +185,11 @@ ul {
 }
 
 img {
-    max-width: 100%; /* 让图片宽度不超过其容器宽度 */
-    height: auto; /* 保持图片的原始宽高比 */
-    display: block; /* 避免图片下方出现空隙 */
-    margin: 0 auto; /* 如果需要，使图片在容器中居中 */
-    width: 25%; /* 圖片大小，可換成任何希望的百分比 */
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+    width: 25%; 
 }
 
 
@@ -60,3 +198,4 @@ img {
         margin: 10px 5px;
     }
 }
+*/
