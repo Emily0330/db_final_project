@@ -23,7 +23,7 @@ ul {
 li {
     background-color: #fff;
     border: 1px solid #ddd;
-    padding: 10px 15px;
+    padding: 5px 10px;
     margin: 10px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -130,72 +130,47 @@ label.form-check-label {
     color: #e67ea3;
 }
 
-@media (max-width: 600px) {
-    li {
-        margin: 10px 5px;
-    }
+/* 頁碼, url */
+.pagination {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    list-style: none; /* 移除默认列表样式 */
+    padding: 5px;
 }
 
-/*
-body {
-    font-family: 'Arial', sans-serif;
+.page-item {
+    margin: 0 5px; /* 添加一些间隔 */
+}
+
+.page-link {
+    color: #91a8d0; /* 链接颜色 */
+    text-decoration: none; /* 移除下划线 */
+    padding: 4px 8px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px; /* 圆角边框 */
+}
+
+.page-link:hover {
+    color: #91a8d0;
+    background-color: #e9ecef;
+    padding: 5px 10px;
+}
+
+/* 为表头设置不同的背景色 */
+.table thead th{
     background-color: #91a8d0;
-    margin: 0;
-    padding: 0;
-    color: #333;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+/* 条纹样式（斑马纹） */
+.table tr:nth-child(even) {
+    background-color: #a9b7ce;
 }
-
-ul {
-    list-style-type: none;
-    padding: 0;
+.table tr:nth-child(odd) {
+    background-color: #c1c7d2;
 }
-
-li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 10px 15px;
-    margin: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-li:hover {
-    background-color: #f9f9f9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-li:nth-child(odd) {
-    background-color: #efefef;
-}
-
-li:nth-child(odd):hover {
-    background-color: #e9e9e9;
-}
-
-ul {
-    max-width: 600px;
-    margin: 20px auto;
-}
-
-img {
-    max-width: 100%; 
-    height: auto; 
-    display: block; 
-    margin: 0 auto; 
-    width: 25%; 
-}
-
 
 @media (max-width: 600px) {
     li {
         margin: 10px 5px;
     }
 }
-*/
