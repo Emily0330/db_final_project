@@ -81,3 +81,12 @@ function applyFilters() {
     // 您可以根据选中的选项和滑动条的值从后端请求数据，或者在页面上显示/隐藏某些元素
     // 在这里添加更多代码以处理筛选逻辑
 }
+
+document.getElementById('myForm').addEventListener('submit', function(e) {
+    var checkboxes = document.querySelectorAll('.form-check-input');
+    var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
+    if (!checkedOne) {
+        e.preventDefault(); // 阻止表单提交
+        document.getElementById('warning').style.display = 'block'; // 显示警告信息
+    }
+});
