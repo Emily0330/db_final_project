@@ -24,13 +24,13 @@ def index():
     # 勾选框名称与数据库表名的映射
     #workspace, 1v1有問題
     table_mapping = {
-        'option1': 'sentinel','option2': 'smart','option3': 'workspace',
+        'option1': 'sentinel','option2': 'smart','option3': 'workplace',
         'option4': 'BE','option5': 'forum','option6': 'transgender',
         'option7': 'tormenting','option8': 'substitute','option9': 'modern',
         'option10': 'antiquity','option11': 'alternate_history','option12': 'fantasy_future',
         'option13': 'love','option14': 'material_arts','option15': 'fantasy',
         'option16': 'cultivation','option17': 'game','option18': 'science_fiction',
-        'option19': 'sweet','option20': 'smoothly','option21': '1v1',
+        'option19': 'sweet','option20': 'smoothly','option21': 'one_v_one',
         'option22': 'travel_through_time','option23': 'into_book','option24': 'rich_family',
         'option25': 'strong_strong','option26': 'system','option27': 'reborn',
         'option28': 'entertainment','option29': 'city','option30': 'reunion',
@@ -58,8 +58,9 @@ def index():
                     find= True
                 query += f"SELECT book.* FROM {table} JOIN book ON {table}.bookweb = book.bookweb"
         if query:
-            query += " ORDER BY book.point desc"
-
+            query += " ORDER BY book.point desc "
+        else:
+            query = " SELECT * FROM book  ORDER BY book.point desc "
         with db.engine.connect() as connection:
             result = connection.execute(text(query))
             rows = result.fetchall()
