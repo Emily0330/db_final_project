@@ -103,22 +103,21 @@ input[type="range"].form-range::-moz-range-thumb {
 }
 
 /* 未选中的勾选框样式 */
-input[type="checkbox"] {
+.form-check-input{
     /* 添加自定义样式，例如颜色或边框 */
-    border: 2px solid #e67ea3;
-    background-color: #fff;
+    border: 2px solid #e67ea3 !important;
+    background-color: #fff !important;
     /* 可以添加其他样式，如大小和形状 */
 }
-
 /* 选中的勾选框样式 */
-input[type="checkbox"]:checked {
+.form-check-input:checked{
     /* 添加自定义样式，例如背景颜色或图标 */
-    background-color: #e67ea3;
-    border: 2px solid #e04c80;
+    background-color: #e67ea3 !important;
+    border: 2px solid #e04c80 !important;
 }
 
 /* 鼠标悬停在勾选框上的样式 */
-input[type="checkbox"]:hover {
+.form-check-input:hover{
     /* 添加悬停样式，例如改变颜色或添加阴影 */
     box-shadow: 0 0 5px #e04c80;
 }
