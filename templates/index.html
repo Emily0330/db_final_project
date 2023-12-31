@@ -15,7 +15,7 @@
         <p class="alert alert-info">小說設定</p>
 
         <!-- 篩選功能 -->
-        <form action="/" method="post">
+        <form action="/" method="post" id="myForm">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="selectAllOptions">
                 <label class="form-check-label" for="selectAllOptions">全選</label>
@@ -409,6 +409,7 @@
                 </div>
             </div>
         </form>
+        <div id="warning" style="color: red; display: none;">至少選擇一個選項</div>
 
         <!-- results -->
         {% if results %}
@@ -423,6 +424,7 @@
                         <th style="border: 1px solid #91a8d0;">積分</th>
                         <th style="border: 1px solid #91a8d0;">日期</th>
                         <th style="border: 1px solid #91a8d0;">介紹</th>
+                        <th style="border: 1px solid #91a8d0;">設定</th>
                         <!-- 根据您的数据结构添加更多列 -->
                     </tr>
                 </thead>
@@ -448,7 +450,10 @@
                             {{ row[6] }}</a>
                         </td>
                         <td style="border: 1px solid #91a8d0;">
-                            {{ row[7] }}</a>
+                            {{ row[7].split("：")[1].split("標")[0] }}</a>
+                        </td>
+                        <td style="border: 1px solid #91a8d0;">
+                            {{ row[7].split("：")[2] }}</a>
                         </td>
                         <!-- 根据您的数据结构填充行 -->
                     </tr>
@@ -468,14 +473,6 @@
             </script>
         {% endif %}
 
-        <!-- 小說列表 -->
-        <ul class="list-group">
-            {% for item in items %}
-                <li class="list-group-item">{{ item.name }} - Code: {{ item.code }}</li>
-            {% else %}
-                <li class="list-group-item">No novels found.</li>
-            {% endfor %}
-        </ul>
         <!-- 引用 static/images 目錄下的圖片 -->
         <img src="{{ url_for('static', filename='images/yjt_monk.jpg') }}" alt="Monkey Image" class="img-fluid my-3">
     </div>
