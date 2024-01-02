@@ -68,7 +68,7 @@ def index():
             if checkbox in request.form:
                 if not find:
                     have_where= True
-                    query += f"WHERE (\"type\" LIKE '%{sexual}%'"
+                    query += f" WHERE (\"type\" LIKE '%{sexual}%'"
                     find= True
                 else:
                     query += f" OR \"type\" LIKE '%{sexual}%'"
@@ -83,7 +83,7 @@ def index():
                         query += f" AND (\"end\" = '{status}'"
                         find= True
                     else:
-                        query += f"WHERE (\"end\" = '{status}'"
+                        query += f" WHERE (\"end\" = '{status}'"
                         find= True
                         have_where= True
                 else:
