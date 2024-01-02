@@ -58,7 +58,7 @@ def index():
                     find= True
                 query += f"SELECT book.* FROM {table} JOIN book ON {table}.bookweb = book.bookweb"
         if query:
-            query += " ORDER BY book.point desc "
+            query += " ORDER BY point desc "
         else:
             query = " SELECT * FROM book  ORDER BY book.point desc "
         with db.engine.connect() as connection:
