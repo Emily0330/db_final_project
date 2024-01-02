@@ -22,7 +22,6 @@ db = SQLAlchemy(app)
 def index():
     
     # 勾选框名称与数据库表名的映射
-    #workspace, 1v1有問題
     table_mapping = {
         'option1': 'sentinel','option2': 'smart','option3': 'workplace',
         'option4': 'BE','option5': 'forum','option6': 'transgender',
@@ -42,10 +41,12 @@ def index():
         'option46': 'alternate_modern','option47': 'redemption','option48': 'childhood_sweethearts',
         'option49': 'secret_love','option50': 'healing','option51': 'palace'
     }
-
+    table_mapping_sexual = { 'sexual1': '言情', 'sexual2':'純愛', 'sexual3':'百合', 'sexual4':'女尊', 'sexual5':'無CP' }
+    table_mapping_status = { 'end1': '完結', 'end2':'連載' }
     rows= []
     query= ""
     if request.method == 'POST':
+        print(request.form) #test
         find = False
         rows= []
         query= ""
@@ -57,13 +58,45 @@ def index():
                 else:
                     find= True
                 query += f"SELECT book.* FROM {table} JOIN book ON {table}.bookweb = book.bookweb"
-        if query:
-            query += " ORDER BY point desc "
-        else:
-            query = " SELECT * FROM book  ORDER BY book.point desc "
+
+        if not query: # 没有勾选任何表时执行默认查询
+            query = " SELECT * FROM book "
+        
+        find= False # 重置
+        have_where= False # have where in query
+        for checkbox, sexual in table_mapping_sexual.items():
+            if checkbox in request.form:
+                if not find:
+                    have_where= True
+                    query += f"WHERE (\"type\" LIKE '%{sexual}%'"
+                    find= True
+                else:
+                    query += f" OR \"type\" LIKE '%{sexual}%'"
+        if find:
+            query += ")"
+        
+        find= False # 重置
+        for checkbox, status in table_mapping_status.items():
+            if checkbox in request.form:
+                if not find:
+                    if have_where:
+                        query += f" AND (\"end\" = '{status}'"
+                        find= True
+                    else:
+                        query += f"WHERE (\"end\" = '{status}'"
+                        find= True
+                        have_where= True
+                else:
+                    query += f" OR \"end\" = '{status}'"
+        if find:
+            query += ")"
+
+        query += " ORDER BY point desc "
+
         with db.engine.connect() as connection:
             result = connection.execute(text(query))
             rows = result.fetchall()
+        print(query) #test
 
         session['query'] = query  # 保存查询字符串到会话
         session['total_rows'] = len(rows)  # 保存总行数到会话
