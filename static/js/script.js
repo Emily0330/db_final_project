@@ -66,7 +66,7 @@ function applyFilters() {
             selectedSexual.push(i);
         }
     }
-    for (let i = 1; i < 3; i++) {
+    for (let i = 1; i < 4; i++) {
         let checkbox = document.getElementById('end' + i);
         if (checkbox && checkbox.checked) {
             selectedend.push(i);
@@ -89,4 +89,9 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
         e.preventDefault(); // 阻止表单提交
         document.getElementById('warning').style.display = 'block'; // 显示警告信息
     }
+});
+
+document.getElementById('rangeFilter').addEventListener('input', function(e) {
+        document.getElementById('rangeValue').textContent = e.target.value;
+        document.getElementById('hiddenRangeValue').value = e.target.value;
 });
