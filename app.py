@@ -12,7 +12,7 @@ app.secret_key = os.urandom(24)
 # 使用环境变量配置数据库连接
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     # 'DBtype://username:password@host:port/dbname'
-    'postgresql://postgres:postgres@novel.cp6zhfatigjz.us-east-1.rds.amazonaws.com:5432/novel' # has to change to the real db
+    'postgresql://postgres:postgres@novel-new.cp6zhfatigjz.us-east-1.rds.amazonaws.com:5432/novel_new' # has to change to the real db
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
