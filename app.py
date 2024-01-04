@@ -12,7 +12,7 @@ app.secret_key = os.urandom(24)
 # 使用环境变量配置数据库连接
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     # 'DBtype://username:password@host:port/dbname'
-    'postgresql://postgres:postgres@novel-new.cp6zhfatigjz.us-east-1.rds.amazonaws.com:5432/novel_new' # has to change to the real db
+    'postgresql://postgres:postgres@novel-new.cp6zhfatigjz.us-east-1.rds.amazonaws.com:5432/novel' # has to change to the real db
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -42,7 +42,7 @@ def index():
         'option49': 'secret_love','option50': 'healing','option51': 'palace'
     }
     table_mapping_sexual = { 'sexual1': '言情', 'sexual2':'純愛', 'sexual3':'百合', 'sexual4':'女尊', 'sexual5':'無CP' }
-    table_mapping_status = { 'end1': '完結', 'end2':'連載' }
+    table_mapping_status = { 'end1': '完結', 'end2':'連載', 'end3':'暫停' }
     rows= []
     query= ""
     if request.method == 'POST':
@@ -91,6 +91,12 @@ def index():
         if find:
             query += ")"
 
+        range_value = request.form.get('rangeValue')
+        if have_where:
+            query+= f" AND (word <= {range_value})"
+        else:
+            query+= f" WHERE (word <= {range_value})"
+        
         query += " ORDER BY point desc "
 
         with db.engine.connect() as connection:
@@ -147,4 +153,4 @@ def index():
 '''
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=5000)
+    app.run(debug=True)
