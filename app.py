@@ -54,9 +54,8 @@ def index():
     query= ""
     if request.method == 'POST':
         # 更新字典中各表單元素的值
-        form_values['range_value'] = request.form.get('rangeFilter', '0')
-        form_values.update({key: 'checked' if key in request.form else '' for key in default_form_values})
-
+        form_values['range_value'] = request.form.get('rangeValue', '0')
+        form_values.update({key: 'checked' if key in request.form else form_values[key] for key in default_form_values})
         find = False
         rows= []
         query= ""
