@@ -335,8 +335,9 @@
             <div class="row my-3">
                 <div class="col">
                     <label for="rangeFilter" class="form-label">篩選範圍（上限）:</label>
-                    <input type="range" class="form-range" id="rangeFilter" min="0" max="20000000" value="0">
+                    <input type="range" class="form-range" name="rangeFilter" id="rangeFilter" min="0" max="20000000" value="0">
                     <span id="rangeValue">0</span>
+                    <input type="hidden" name="rangeValue" id="hiddenRangeValue">
                 </div>
             </div>
 
@@ -350,31 +351,31 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="sexual1" id="sexual1">
+                        <input class="form-check-input" type="checkbox" id="sexual1">
                         <label class="form-check-label" for="sexual1">言情</label>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="sexual2" id="sexual2">
+                        <input class="form-check-input" type="checkbox" id="sexual2">
                         <label class="form-check-label" for="sexual2">純愛</label>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="sexual3" id="sexual3">
+                        <input class="form-check-input" type="checkbox" id="sexual3">
                         <label class="form-check-label" for="sexual3">百合</label>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="sexual4" id="sexual4">
+                        <input class="form-check-input" type="checkbox" id="sexual4">
                         <label class="form-check-label" for="sexual4">女尊</label>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="sexual5" id="sexual5">
+                        <input class="form-check-input" type="checkbox" id="sexual5">
                         <label class="form-check-label" for="sexual5">無cp</label>
                     </div>
                 </div>
@@ -390,14 +391,20 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="end1" id="end1">
+                        <input class="form-check-input" type="checkbox" id="end1">
                         <label class="form-check-label" for="end1">完結</label>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="end2" id="end2">
+                        <input class="form-check-input" type="checkbox" id="end2">
                         <label class="form-check-label" for="end2">連載</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="end3">
+                        <label class="form-check-label" for="end3">暫停</label>
                     </div>
                 </div>
             </div>
