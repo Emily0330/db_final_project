@@ -20,7 +20,6 @@ db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    
     # 勾选框名称与数据库表名的映射
     table_mapping = {
         'option1': 'sentinel','option2': 'smart','option3': 'workplace',
@@ -43,10 +42,21 @@ def index():
     }
     table_mapping_sexual = { 'sexual1': '言情', 'sexual2':'純愛', 'sexual3':'百合', 'sexual4':'女尊', 'sexual5':'無CP' }
     table_mapping_status = { 'end1': '完結', 'end2':'連載', 'end3':'暫停' }
+    # 初始化表單值的字典
+    default_form_values = {
+        'range_value': '0',
+        **{key: '' for key in table_mapping},
+        **{key: '' for key in table_mapping_sexual},
+        **{key: '' for key in table_mapping_status},
+    }
+    form_values = default_form_values.copy()
     rows= []
     query= ""
     if request.method == 'POST':
-        print(request.form) #test
+        # 更新字典中各表單元素的值
+        form_values['range_value'] = request.form.get('rangeFilter', '0')
+        form_values.update({key: 'checked' if key in request.form else '' for key in default_form_values})
+
         find = False
         rows= []
         query= ""
@@ -102,14 +112,15 @@ def index():
         with db.engine.connect() as connection:
             result = connection.execute(text(query))
             rows = result.fetchall()
-        print(query) #test
 
         session['query'] = query  # 保存查询字符串到会话
         session['total_rows'] = len(rows)  # 保存总行数到会话
+        session['form_values'] = form_values
     else:
         # 处理 GET 请求
         query = session.get('query', '')  # 从会话中获取查询字符串
         total_rows = session.get('total_rows', 0)  # 从会话中获取总行数
+        form_values = session.get('form_values', default_form_values)
 
         if query:
             with db.engine.connect() as connection:
@@ -129,8 +140,7 @@ def index():
 
     session['current_page'] = current_page
 
-    return render_template('index.html', results=paginated_results, pagination=pagination)
-
+    return render_template('index.html', results=paginated_results, pagination=pagination, form_values=form_values)
 
 
 # 定义模型
