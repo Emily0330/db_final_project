@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 绑定滑动条的 input 事件
     const rangeFilter = document.getElementById('rangeFilter');
-    const rangeValueDisplay = document.getElementById('rangeValue');
     
     rangeFilter.oninput = function() {
         rangeValueDisplay.textContent = this.value;
@@ -42,6 +41,20 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filterButton) {
         filterButton.addEventListener('click', applyFilters);
     }
+
+    const rangeSlider = document.getElementById('rangeFilter');
+    const rangeValueDisplay = document.getElementById('rangeValue');
+    const hiddenRangeValue = document.getElementById('hiddenRangeValue');
+
+    // 設定滑塊和隱藏輸入的初始值
+    rangeValueDisplay.textContent = rangeSlider.value;
+    hiddenRangeValue.value = rangeSlider.value;
+
+    // 更新顯示值和隱藏輸入的值
+    rangeSlider.addEventListener('input', function() {
+        rangeValueDisplay.textContent = this.value;
+        hiddenRangeValue.value = this.value;
+    });
 });
 
 // 应用筛选函数
