@@ -52,14 +52,53 @@ def index():
     form_values = default_form_values.copy()
     rows= []
     query= ""
+    where= ""
     if request.method == 'POST':
         # 更新字典中各表單元素的值
-        form_values['range_value'] = request.form.get('rangeValue', '0')
+        form_values['range_value'] = request.form.get('rangeFilter', '0')
         form_values.update({key: 'checked' if key in request.form else form_values[key] for key in default_form_values})
-        find = False
+        
         rows= []
         query= ""
-        # 为选中的每个表构建 SQL 查询并用 UNION ALL 连接
+        where= ""
+        find= False # 重置
+        have_where= False # have where in query
+
+        for checkbox, sexual in table_mapping_sexual.items():
+            if checkbox in request.form:
+                if not find:
+                    have_where= True
+                    where += f" WHERE (\"type\" LIKE '%{sexual}%'"
+                    find= True
+                else:
+                    where += f" OR \"type\" LIKE '%{sexual}%'"
+        if find:
+            where += ")"
+        
+        find= False # 重置
+        for checkbox, status in table_mapping_status.items():
+            if checkbox in request.form:
+                if not find:
+                    if have_where:
+                        where += f" AND (\"end\" = '{status}'"
+                        find= True
+                    else:
+                        where += f" WHERE (\"end\" = '{status}'"
+                        find= True
+                        have_where= True
+                else:
+                    where += f" OR \"end\" = '{status}'"
+        if find:
+            where += ")"
+
+        range_value = request.form.get('rangeValue')
+        if have_where:
+            where+= f" AND (word <= {range_value})"
+        else:
+            where+= f" WHERE (word <= {range_value})"
+        
+        # 为选中的每个表构建 SQL 查询并用 UNION 连接
+        find= False
         for checkbox, table in table_mapping.items():
             if checkbox in request.form:
                 if find:
@@ -67,47 +106,14 @@ def index():
                 else:
                     find= True
                 query += f"SELECT book.* FROM {table} JOIN book ON {table}.bookweb = book.bookweb"
+                query += where
 
         if not query: # 没有勾选任何表时执行默认查询
             query = " SELECT * FROM book "
-        
-        find= False # 重置
-        have_where= False # have where in query
-        for checkbox, sexual in table_mapping_sexual.items():
-            if checkbox in request.form:
-                if not find:
-                    have_where= True
-                    query += f" WHERE (\"type\" LIKE '%{sexual}%'"
-                    find= True
-                else:
-                    query += f" OR \"type\" LIKE '%{sexual}%'"
-        if find:
-            query += ")"
-        
-        find= False # 重置
-        for checkbox, status in table_mapping_status.items():
-            if checkbox in request.form:
-                if not find:
-                    if have_where:
-                        query += f" AND (\"end\" = '{status}'"
-                        find= True
-                    else:
-                        query += f" WHERE (\"end\" = '{status}'"
-                        find= True
-                        have_where= True
-                else:
-                    query += f" OR \"end\" = '{status}'"
-        if find:
-            query += ")"
-
-        range_value = request.form.get('rangeValue')
-        if have_where:
-            query+= f" AND (word <= {range_value})"
-        else:
-            query+= f" WHERE (word <= {range_value})"
+            query += where
         
         query += " ORDER BY point desc "
-
+        
         with db.engine.connect() as connection:
             result = connection.execute(text(query))
             rows = result.fetchall()
@@ -140,26 +146,6 @@ def index():
     session['current_page'] = current_page
 
     return render_template('index.html', results=paginated_results, pagination=pagination, form_values=form_values)
-
-
-# 定义模型
-'''
-class Novel(db.Model):
-    __tablename__ = 'book' # READ THE TABLE NAME
-    bookweb = db.Column(db.String, primary_key=True)
-    author = db.Column(db.String, nullable=False)
-    # author = db.Column(db.String, nullable=False)
-# 设置路由
-@app.route('/')
-
-def index():
-    # 执行默认查询或特定查询
-    query = "SELECT * FROM book"  # 替换为您的查询
-    result = db.engine.execute(query)
-    rows = result.fetchall()
-
-    return render_template('index.html', rows= rows)
-'''
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=5000)
